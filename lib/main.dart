@@ -11,6 +11,11 @@ class MyApp extends StatelessWidget {
       title: 'Kilograms to Pounds Converter',
       theme: ThemeData(
         primarySwatch: Colors.grey,
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData().textTheme.copyWith(
+                title: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+        ),
       ),
       home: MyHomePage(title: 'Kilograms to Pounds Converter'),
     );
