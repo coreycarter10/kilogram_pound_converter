@@ -11,11 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'Kilograms to Pounds Converter',
       theme: ThemeData(
         primarySwatch: Colors.grey,
-        appBarTheme: AppBarTheme(
-          textTheme: ThemeData().textTheme.copyWith(
-                title: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-        ),
       ),
       home: MyHomePage(title: 'Kilograms to Pounds Converter'),
     );
@@ -80,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               final fontStyle = TextStyle(
-                fontSize: constraints.maxHeight * .07,
+                fontSize: constraints.maxWidth * .10,
                 color: Colors.orange,
               );
 
