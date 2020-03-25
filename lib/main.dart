@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,20 +6,30 @@ double kgToPounds(double kg) => kg * 2.205;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(MyApp());
+  runApp(KilogramConverter());
 }
 
-class MyApp extends StatelessWidget {
+class KilogramConverter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Kilograms to Pounds Converter',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: MaterialApp(
+        title: 'Kilograms to Pounds Converter',
+        theme: ThemeData(
+          primarySwatch: Colors.grey,
+        ),
+        home: MyHomePage(title: 'Kilograms to Pounds Converter'),
       ),
-      home: MyHomePage(title: 'Kilograms to Pounds Converter'),
     );
   }
 }
@@ -92,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     TextField(
                       cursorColor: Colors.orange,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
                       style: fontStyle,
                       decoration: InputDecoration(
                         enabledBorder: textFieldBorder,
@@ -100,7 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         suffixText: 'kg',
                         suffixStyle: fontStyle,
                         hintText: 'Kilograms',
-                        hintStyle: TextStyle(color: Colors.white30, fontSize: constraints.maxWidth * .09),
+                        hintStyle: TextStyle(
+                            color: Colors.white30,
+                            fontSize: constraints.maxWidth * .09),
                       ),
                       onChanged: (String text) {
                         final kg = double.tryParse(text);
