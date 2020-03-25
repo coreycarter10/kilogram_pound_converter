@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         suffixText: 'kg',
                         suffixStyle: fontStyle,
                         hintText: 'Kilograms',
-                        hintStyle: TextStyle(color: Colors.white30),
+                        hintStyle: TextStyle(color: Colors.white30, fontSize: constraints.maxWidth * .09),
                       ),
                       onChanged: (String text) {
                         final kg = double.tryParse(text);
